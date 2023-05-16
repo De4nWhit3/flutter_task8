@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task8/question_class.dart';
 import 'package:flutter_task8/question_page.dart';
 import 'package:flutter_task8/result_page.dart';
 
@@ -88,4 +89,10 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+}
+
+class Game {
+  // from the route return bool if question was answered wrong or correct
+  // create a question widget for each question in a category
+  // sort the questions into categories in the map
 }
