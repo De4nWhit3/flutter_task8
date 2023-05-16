@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task8/question_page.dart';
+import 'package:flutter_task8/result_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +16,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: const MyHomePage(),
+      initialRoute: '/',
+      routes: <String, WidgetBuilder>{
+        '/': (BuildContext context) => const MyHomePage(),
+        '/questions': (BuildContext context) => const QuestionPage(),
+        '/result': (BuildContext context) => const ResultPage(),
+      },
     );
   }
 }
@@ -57,7 +64,9 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: const Icon(Icons.star),
               label: const Text(style: TextStyle(fontSize: 25), 'Disney'),
               onPressed: () {
-                setState(() {});
+                setState(() {
+                  Navigator.of(context).pushNamed('/questions');
+                });
               },
             ),
             const SizedBox(
@@ -69,7 +78,9 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: const Icon(Icons.ac_unit),
               label: const Text(style: TextStyle(fontSize: 25), 'Pixar'),
               onPressed: () {
-                setState(() {});
+                setState(() {
+                  Navigator.of(context).pushNamed('/questions');
+                });
               },
             ),
           ],
