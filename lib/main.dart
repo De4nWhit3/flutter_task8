@@ -92,7 +92,42 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class Game {
-  // from the route return bool if question was answered wrong or correct
-  // create a question widget for each question in a category
-  // sort the questions into categories in the map
+  String disney = 'Disney';
+  String pixar = 'Pixar';
+
+  Map<String, List<Question>> questions = {
+    'Disney': <Question>[],
+    'Pixar': <Question>[],
+  };
+
+  Game() {
+    // INITIALIZE DISNEY QUESTIONS
+    List<Answer> q1Answers = [
+      Answer(answer: 'Johnny Depp', correct: false),
+      Answer(answer: 'Walt Disney', correct: true),
+      Answer(answer: 'Frank Sinatra', correct: false),
+    ];
+
+    addQuestion(
+        question: 'Who founded Disney?', catagory: disney, answers: q1Answers);
+
+    List<Answer> q2Answers = [
+      Answer(answer: 'Four', correct: true),
+      Answer(answer: 'Six', correct: false),
+      Answer(answer: 'Five', correct: false),
+    ];
+
+    addQuestion(
+        question: 'How many fingers does Mickey Mouse have?',
+        catagory: disney,
+        answers: q2Answers);
+  }
+
+  void addQuestion(
+      {required String question,
+      required String catagory,
+      required List<Answer> answers}) {
+    questions[catagory]!
+        .add(Question(question: question, answers: answers, category: disney));
+  }
 }
