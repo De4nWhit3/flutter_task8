@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task8/question_class.dart';
 
+const MaterialColor fontsColor = Colors.brown;
+const Color buttonBackground = Colors.yellow;
+
 void main() {
   runApp(const MyApp());
 }
@@ -29,8 +32,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  static const MaterialColor fontsColor = Colors.brown;
-  static const Color buttonBackground = Colors.yellow;
   Game gameQuestions = Game();
 
   @override
@@ -180,10 +181,20 @@ class _RadioQuestionState extends State<RadioQuestion> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Dean\'s Quiz App')),
+      backgroundColor: Colors.yellowAccent.shade100,
+      appBar: AppBar(
+        title: const Text('Dean\'s Quiz App'),
+        backgroundColor: buttonBackground,
+      ),
       body: Column(
         children: <Widget>[
-          Text(widget.question.question),
+          Text(
+            widget.question.question,
+            style: const TextStyle(
+              color: fontsColor,
+              fontSize: 30,
+            ),
+          ),
           RadioListTile<String>(
             value: widget.question.answers[0].answer,
             groupValue: selectedAnswer,
@@ -215,10 +226,12 @@ class _RadioQuestionState extends State<RadioQuestion> {
             title: Text(widget.question.answers[2].answer),
           ),
           FloatingActionButton.extended(
+              backgroundColor: buttonBackground,
+              foregroundColor: fontsColor,
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              label: const Text('Next'))
+              label: const Text(style: TextStyle(fontSize: 25), 'Next'))
         ],
       ),
     );
