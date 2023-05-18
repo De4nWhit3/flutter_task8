@@ -85,7 +85,14 @@ class _MyHomePageState extends State<MyHomePage> {
               label: const Text(style: TextStyle(fontSize: 25), 'Pixar'),
               onPressed: () {
                 setState(() {
-                  // TODO: Display questions
+                  List<Question> questions = gameQuestions.questions['Pixar']!;
+
+                  for (int i = 0; i < questions.length; i++) {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (BuildContext context) {
+                      return RadioQuestion(question: questions[i]);
+                    }));
+                  }
                 });
               },
             ),
@@ -126,6 +133,29 @@ class Game {
         question: 'How many fingers does Mickey Mouse have?',
         catagory: disney,
         answers: q2Answers);
+
+    List<Answer> q3Answers = [
+      Answer(answer: 'Cinderella', correct: false),
+      Answer(answer: 'Peter Pan', correct: false),
+      Answer(answer: 'Snow White', correct: true),
+    ];
+
+    addQuestion(
+        question: 'What was Disney\'s first movie?',
+        catagory: disney,
+        answers: q3Answers);
+
+    // PIXAR QUESTIONS
+    List<Answer> q4Answers = [
+      Answer(answer: 'Bill Gates', correct: false),
+      Answer(answer: 'Elon Musk', correct: false),
+      Answer(answer: 'Steve Jobs', correct: true),
+    ];
+
+    addQuestion(
+        question: 'Which famous IT icon helped run Pixar?',
+        catagory: pixar,
+        answers: q4Answers);
   }
 
   void addQuestion(
