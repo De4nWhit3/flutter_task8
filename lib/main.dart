@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task8/question_class.dart';
-import 'package:flutter_task8/question_page.dart';
-import 'package:flutter_task8/result_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,11 +16,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       initialRoute: '/',
-      routes: <String, WidgetBuilder>{
-        '/': (BuildContext context) => const MyHomePage(),
-        '/questions': (BuildContext context) => const QuestionPage(),
-        '/result': (BuildContext context) => const ResultPage(),
-      },
+      home: const MyHomePage(),
     );
   }
 }
@@ -37,6 +31,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   static const MaterialColor fontsColor = Colors.brown;
   static const Color buttonBackground = Colors.yellow;
+  Game gameQuestions = Game();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,13 +56,21 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 30,
             ),
             FloatingActionButton.extended(
+              heroTag: 'disneyQuestions',
               backgroundColor: buttonBackground,
               foregroundColor: fontsColor,
               icon: const Icon(Icons.star),
               label: const Text(style: TextStyle(fontSize: 25), 'Disney'),
               onPressed: () {
                 setState(() {
-                  Navigator.of(context).pushNamed('/questions');
+                  List<Question> questions = gameQuestions.questions['Disney']!;
+
+                  for (int i = 0; i < questions.length; i++) {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (BuildContext context) {
+                      return RadioQuestion(question: questions[i]);
+                    }));
+                  }
                 });
               },
             ),
@@ -74,13 +78,14 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 20,
             ),
             FloatingActionButton.extended(
+              heroTag: 'PixarQuestions',
               backgroundColor: buttonBackground,
               foregroundColor: fontsColor,
               icon: const Icon(Icons.ac_unit),
               label: const Text(style: TextStyle(fontSize: 25), 'Pixar'),
               onPressed: () {
                 setState(() {
-                  Navigator.of(context).pushNamed('/questions');
+                  // TODO: Display questions
                 });
               },
             ),
@@ -129,5 +134,62 @@ class Game {
       required List<Answer> answers}) {
     questions[catagory]!
         .add(Question(question: question, answers: answers, category: disney));
+  }
+}
+
+class RadioQuestion extends StatefulWidget {
+  final Question question;
+  const RadioQuestion({super.key, required this.question});
+
+  @override
+  State<RadioQuestion> createState() => _RadioQuestionState();
+}
+
+class _RadioQuestionState extends State<RadioQuestion> {
+  String? selectedAnswer;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('RadioListTile Sample')),
+      body: Column(
+        children: <Widget>[
+          RadioListTile<String>(
+            value: widget.question.answers[0].answer,
+            groupValue: selectedAnswer,
+            onChanged: (String? value) {
+              setState(() {
+                selectedAnswer = value;
+              });
+            },
+            title: Text(widget.question.answers[0].answer),
+          ),
+          RadioListTile<String>(
+            value: widget.question.answers[1].answer,
+            groupValue: selectedAnswer,
+            onChanged: (String? value) {
+              setState(() {
+                selectedAnswer = value;
+              });
+            },
+            title: Text(widget.question.answers[1].answer),
+          ),
+          RadioListTile<String>(
+            value: widget.question.answers[2].answer,
+            groupValue: selectedAnswer,
+            onChanged: (String? value) {
+              setState(() {
+                selectedAnswer = value;
+              });
+            },
+            title: Text(widget.question.answers[2].answer),
+          ),
+          FloatingActionButton.extended(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              label: const Text('Next'))
+        ],
+      ),
+    );
   }
 }

@@ -2,7 +2,6 @@ class Question {
   String question;
   String category;
   List<Answer> answers;
-  bool? answeredCorrectly;
 
   Question(
       {required this.question, required this.answers, required this.category});
