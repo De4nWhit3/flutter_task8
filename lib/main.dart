@@ -150,9 +150,10 @@ class _RadioQuestionState extends State<RadioQuestion> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('RadioListTile Sample')),
+      appBar: AppBar(title: const Text('Dean\'s Quiz App')),
       body: Column(
         children: <Widget>[
+          Text(widget.question.question),
           RadioListTile<String>(
             value: widget.question.answers[0].answer,
             groupValue: selectedAnswer,
