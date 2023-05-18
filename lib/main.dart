@@ -187,12 +187,17 @@ class _RadioQuestionState extends State<RadioQuestion> {
         backgroundColor: buttonBackground,
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Text(
-            widget.question.question,
-            style: const TextStyle(
-              color: fontsColor,
-              fontSize: 30,
+          Flexible(
+            child: Text(
+              widget.question.question,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: fontsColor,
+                fontSize: 30,
+              ),
             ),
           ),
           RadioListTile<String>(
