@@ -201,38 +201,18 @@ class _RadioQuestionState extends State<RadioQuestion> {
             ),
           ),
           Column(
-            children: [
-              RadioListTile<String>(
-                value: widget.question.answers[0].answer,
-                groupValue: selectedAnswer,
-                onChanged: (String? value) {
-                  setState(() {
-                    selectedAnswer = value;
-                  });
-                },
-                title: Text(widget.question.answers[0].answer),
-              ),
-              RadioListTile<String>(
-                value: widget.question.answers[1].answer,
-                groupValue: selectedAnswer,
-                onChanged: (String? value) {
-                  setState(() {
-                    selectedAnswer = value;
-                  });
-                },
-                title: Text(widget.question.answers[1].answer),
-              ),
-              RadioListTile<String>(
-                value: widget.question.answers[2].answer,
-                groupValue: selectedAnswer,
-                onChanged: (String? value) {
-                  setState(() {
-                    selectedAnswer = value;
-                  });
-                },
-                title: Text(widget.question.answers[2].answer),
-              ),
-            ],
+            children: widget.question.answers
+                .map((e) => RadioListTile<String>(
+                      title: Text(e.answer),
+                      value: e.answer.toString(),
+                      groupValue: selectedAnswer,
+                      onChanged: (String? value) {
+                        setState(() {
+                          selectedAnswer = value;
+                        });
+                      },
+                    ))
+                .toList(),
           ),
           FloatingActionButton.extended(
               backgroundColor: buttonBackground,
