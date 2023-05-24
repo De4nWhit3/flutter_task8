@@ -187,7 +187,7 @@ class _RadioQuestionState extends State<RadioQuestion> {
         backgroundColor: buttonBackground,
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Flexible(
@@ -199,6 +199,9 @@ class _RadioQuestionState extends State<RadioQuestion> {
                 fontSize: 30,
               ),
             ),
+          ),
+          const SizedBox(
+            height: 30,
           ),
           Column(
             children: widget.question.answers
@@ -214,15 +217,15 @@ class _RadioQuestionState extends State<RadioQuestion> {
                     ))
                 .toList(),
           ),
-          FloatingActionButton.extended(
-              backgroundColor: buttonBackground,
-              foregroundColor: fontsColor,
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              label: const Text(style: TextStyle(fontSize: 25), 'Next'))
         ],
       ),
+      floatingActionButton: FloatingActionButton.extended(
+          backgroundColor: buttonBackground,
+          foregroundColor: fontsColor,
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          label: const Text(style: TextStyle(fontSize: 25), 'Next')),
     );
   }
 }
