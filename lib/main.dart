@@ -200,35 +200,39 @@ class _RadioQuestionState extends State<RadioQuestion> {
               ),
             ),
           ),
-          RadioListTile<String>(
-            value: widget.question.answers[0].answer,
-            groupValue: selectedAnswer,
-            onChanged: (String? value) {
-              setState(() {
-                selectedAnswer = value;
-              });
-            },
-            title: Text(widget.question.answers[0].answer),
-          ),
-          RadioListTile<String>(
-            value: widget.question.answers[1].answer,
-            groupValue: selectedAnswer,
-            onChanged: (String? value) {
-              setState(() {
-                selectedAnswer = value;
-              });
-            },
-            title: Text(widget.question.answers[1].answer),
-          ),
-          RadioListTile<String>(
-            value: widget.question.answers[2].answer,
-            groupValue: selectedAnswer,
-            onChanged: (String? value) {
-              setState(() {
-                selectedAnswer = value;
-              });
-            },
-            title: Text(widget.question.answers[2].answer),
+          Column(
+            children: [
+              RadioListTile<String>(
+                value: widget.question.answers[0].answer,
+                groupValue: selectedAnswer,
+                onChanged: (String? value) {
+                  setState(() {
+                    selectedAnswer = value;
+                  });
+                },
+                title: Text(widget.question.answers[0].answer),
+              ),
+              RadioListTile<String>(
+                value: widget.question.answers[1].answer,
+                groupValue: selectedAnswer,
+                onChanged: (String? value) {
+                  setState(() {
+                    selectedAnswer = value;
+                  });
+                },
+                title: Text(widget.question.answers[1].answer),
+              ),
+              RadioListTile<String>(
+                value: widget.question.answers[2].answer,
+                groupValue: selectedAnswer,
+                onChanged: (String? value) {
+                  setState(() {
+                    selectedAnswer = value;
+                  });
+                },
+                title: Text(widget.question.answers[2].answer),
+              ),
+            ],
           ),
           FloatingActionButton.extended(
               backgroundColor: buttonBackground,
